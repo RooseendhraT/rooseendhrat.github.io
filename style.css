@@ -1,3 +1,6 @@
+.tab-content{
+  font-size: small;
+}
 .nav-pills .nav-link.active {
   background-color: transparent !important;
 }
