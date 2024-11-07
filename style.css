@@ -1,0 +1,27 @@
+.nav-pills .nav-link.active {
+  background-color: transparent !important;
+}
+
+.nav-pills .nav-link:hover {
+  color: rgb(190, 190, 190);
+}
+
+.nav-pills .nav-link {
+  color: antiquewhite;
+}
+
+.navbar .nav-pills {
+  margin-left: 15px;
+}
+
+@media screen and (max-width:480px) {
+  .nav-pills .nav-item {
+      font-size: 14px;
+  }
+  .nav-pills .nav-link {
+      padding: 3px 7px;
+  }
+  .navbar .nav-pills {
+      margin-left: auto;
+  }
+}
