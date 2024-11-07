@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdn.plyr.io/3.7.8/plyr.css">
+    <script src="https://cdn.plyr.io/3.7.8/plyr.polyfilled.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
@@ -36,57 +38,74 @@
     </div>
 
     <div class="tab-content">
-        <div id="home" class="carousel slide tab-pane active" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#home" data-bs-slide-to="0" class="active"></button>
-                <button type="button" data-bs-target="#home" data-bs-slide-to="1"></button>
-                <button type="button" data-bs-target="#home" data-bs-slide-to="2"></button>
-            </div>
-
-            <div class="carousel-inner ratio ratio-1x1">
-                <div class="carousel-item active">
-                    <img src="parkergwen1x1.jpg" alt="parker gwen" class="d-block w-100" style="object-fit: cover; object-position: center;">
-                    <div class="carousel-caption">
-                        <h3>Tuned</h3>
-                        <p>Next will be showed here</p>
-                    </div>
+        <div id="home" class="tab-pane active container-fluid">
+            <div class="row">
+                <div class="col-sm-6 d-flex">
+                    <div class="pt-3">
+                        <h2>Home</h2>
+                        <p>Welcome to my homepage! Here you'll find various updates and featured content .</p>
+                    </div>      
                 </div>
-                <div class="carousel-item">
-                    <img src="deadpoolxwolverine1x1.jpg" alt="deadpoolxwolverine" class="d-block w-100" style="height:auto; object-fit: cover; object-position: center;">
-                    <div class="carousel-caption">
-                        <h3>Pervious</h3>
-                        <p>Deadpoolxwolverine</p>
-                    </div>
-                </div>
-            </div>
+                <div class="col-sm-6 pt-3">
+                    <div class="carousel-container">
+                        <div class="carousel slide" data-bs-ride="carousel">
+                            <div class="carousel-indicators">
+                                <button type="button" data-bs-target="#home" data-bs-slide-to="0" class="active"></button>
+                                <button type="button" data-bs-target="#home" data-bs-slide-to="1"></button>
+                                <button type="button" data-bs-target="#home" data-bs-slide-to="2"></button>
+                            </div>
+                
+                            <div class="carousel-inner">
+                                <div class="carousel-item active">
+                                    <img src="parkergwen1x1.jpg" alt="parker gwen" class="d-block w-100">
+                                    <div class="carousel-caption">
+                                        <h3>Tuned</h3>
+                                        <p>Next will be showed here</p>
+                                    </div>
+                                </div>
+                                <div class="carousel-item">
+                                    <img src="deadpoolxwolverine1x1.jpg" alt="deadpoolxwolverine" class="d-block w-100">
+                                    <div class="carousel-caption">
+                                        <h3>Pervious</h3>
+                                        <p>Deadpoolxwolverine</p>
+                                    </div>
+                                </div>
+                            </div>
+                
+                            <button class="carousel-control-prev" type="button" data-bs-target="#home" data-bs-slide="prev">
+                                <span class="carousel-control-prev-icon"></span>
+                            </button>
+                            <button class="carousel-control-next" type="button" data-bs-target="#home" data-bs-slide="next">
+                                <span class="carousel-control-next-icon"></span>
+                            </button>
+                        </div>
 
-            <button class="carousel-control-prev" type="button" data-bs-target="#home" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#home" data-bs-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </button>
-            <div class="container-fluid pt-2">
-                <h2>Home</h2>
+                    </div>
+                    
+                </div>
             </div>
         </div>
-
+        
         <div id="videos" class="container-fluid p-4 tab-pane fade">
             <h4>VIDEOS</h4>
             <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
-                
                 <div class="col">
-                    <div class="ratio ratio-1x1">
-                        <video controls>
-                            <source src="fightclub.mp4" type="video/mp4">
+                    <div class="">
+                        <video class="js-player" controls>
+                            
+                            
+                            <source src="fightclub_1080.mp4" type="video/mp4" data-quality="1080">
+                            <source src="fightclub_720.mp4" type="video/mp4" data-quality="720">
+                            <source src="fightclub_480.mp4" type="video/mp4" data-quality="480">
+                            
                             Your browser does not support the video tag.
                         </video>
                     </div>
                 </div>
-                
+
                 <div class="col">
-                    <div class="ratio ratio-1x1">
-                        <video controls>
+                    <div class="">
+                        <video class="js-player" controls>
                             <source src="fightclub.mp4" type="video/mp4">
                             Your browser does not support the video tag.
                         </video>
@@ -95,5 +114,6 @@
             </div>
         </div>
     </div>
+    <script src="script.js"></script>
 </body>
 </html>
