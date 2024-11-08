@@ -1,12 +1,33 @@
-const players = Plyr.setup('.js-player',{
-    quality: {
-        default:1080,
-        options:[1080,720,480],
-        forced:true,
-        onchange: (newQuality)=>{
-            console.log(`Quality changed to ${newQuality}`)
+document.addEventListener('DOMContentLoaded', () => {
+    const players = Plyr.setup('.js-player', {
+        quality: {
+            default: 1080,
+            options: [1080, 720, 480],
+            forced: true,
+            onChange: (newQuality) => {
+                console.log(`Quality changed to ${newQuality}`);
+            }
         }
-    }
+    });
+});
+
+document.querySelectorAll('.js-player').forEach(video => {
+    const overlay = video.closest('.video-container').querySelector('.loading-overlay');
+
+    // Show the overlay when buffering starts
+    video.addEventListener('waiting', () => {
+        overlay.style.display = 'flex';
+    });
+
+    // Hide the overlay when the video starts playing
+    video.addEventListener('playing', () => {
+        overlay.style.display = 'none';
+    });
+
+    // Hide the overlay when the video pauses (useful if you want to stop showing it on pause)
+    video.addEventListener('pause', () => {
+        overlay.style.display = 'none';
+    });
 });
 
 document.querySelectorAll('a[data-bs-toggle="pill"]').forEach(function(tab) {

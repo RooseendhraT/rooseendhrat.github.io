@@ -36,9 +36,8 @@
             </form>
         </div>
     </div>
-
     <div class="tab-content">
-        <div id="home" class="tab-pane container-fluid">
+        <div id="home" class="tab-pane active container-fluid">
             <div class="row">
                 <div class="col-sm-6 d-flex">
                     <div class="pt-3">
@@ -86,19 +85,22 @@
             </div>
         </div>
         
-        <div id="videos" class="container-fluid active tab-pane pt-3">
+        <div id="videos" class="container-fluid tab-pane fade pt-3">
             <h2>Videos</h2>
             <div class="row">
                 <div class="col-sm-4">
                     <div class="card">
-                        <div class="">
+                        <div class="video-container">
+                            <div class="loading-overlay" id="loadingOverlay">
+                                <div class="spinner"></div>
+                            </div>
                             <video class="js-player" controls>
                                 <source src="fightclub_1080.mp4" type="video/mp4" data-quality="1080">
                                 <source src="fightclub_720.mp4" type="video/mp4" data-quality="720">
-                                <source src="fightclub_480.mp4" type="video/mp4" data-quality="480">
+                                <source src="fightlub_480.mp4" type="video/mp4" data-quality="480">
                                 Your browser does not support the video tag.
-                            </video>
-                            <div class="card-caption pt-3 text-center">
+                            </video> 
+                            <div class="caption pt-3 text-center">
                                 <p>Welcome to the fightclub!</p>
                             </div>
                         </div>  
@@ -106,21 +108,20 @@
                 </div>
                 <div class="col-sm-4">
                     <div class="card">
-                        <div class="">
-                            <video class="js-player" controls>
-                        
-                                <source src="jd_1080.mp4" type="video/mp4" data-quality="1080">
-                                <source src="jd_720.mp4" type="video/mp4" quality="720">
-                                <source src="jd_480.mp4" type="video/mp4" data-quality="480">
-                                
-                                Your browser does not support the video tag.
-                            </video>
-                            <div class="card-caption pt-3 text-center">
-                                <p>Jd core!</p>
+                        <div class="video-container">
+                            <div class="loading-overlay" id="loadingOverlay">
+                                <div class="spinner"></div>
                             </div>
-
-                        </div>
-                        
+                            <video class="js-player" controls>
+                                <source src="jd_1080.mp4" type="video/mp4" data-quality="1080">
+                                <source src="jd_720.mp4" type="video/mp4" data-quality="720">
+                                <source src="id_480.mp4" type="video/mp4" data-quality="480">
+                                Your browser does not support the video tag.       
+                            </video> 
+                            <div class="caption pt-3 text-center">
+                                <p>Welcome to the fightclub!</p>
+                            </div>
+                        </div>  
                     </div>
                 </div>
             </div>
