@@ -9,38 +9,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     });
-});
 
-document.querySelectorAll('.js-player').forEach(video => {
-    const overlay = video.closest('.video-container').querySelector('.loading-overlay');
-
-    // Show the overlay when buffering starts
-    video.addEventListener('waiting', () => {
-        overlay.style.display = 'flex';
-    });
-
-    // Hide the overlay when the video starts playing
-    video.addEventListener('playing', () => {
-        overlay.style.display = 'none';
-    });
-
-    // Hide the overlay when the video pauses (useful if you want to stop showing it on pause)
-    video.addEventListener('pause', () => {
-        overlay.style.display = 'none';
-    });
-});
-
-document.querySelectorAll('a[data-bs-toggle="pill"]').forEach(function(tab) {
-    tab.addEventListener('shown.bs.tab', function() {
-        const video = document.querySelector('.js-player');
-        video.pause();
-    });
-});
-
-document.addEventListener('DOMContentLoaded', () => {
     const videos = document.querySelectorAll('.js-player');
-    
+
     videos.forEach((video) => {
+        const overlay = video.closest('.video-container').querySelector('.loading-overlay');
+
+        // Show overlay on buffering
+        video.addEventListener('waiting', () => {
+            overlay.style.display = 'flex';
+        });
+
+        // Hide overlay on play
+        video.addEventListener('playing', () => {
+            overlay.style.display = 'none';
+        });
+
+        // Hide overlay on pause
+        video.addEventListener('pause', () => {
+            overlay.style.display = 'none';
+        });
+
+        // Only allow one video to play at a time
         video.addEventListener('play', () => {
             videos.forEach((otherVideo) => {
                 if (otherVideo !== video) {
@@ -48,22 +38,40 @@ document.addEventListener('DOMContentLoaded', () => {
                 }
             });
         });
+
+        // Pause video if clicked outside of it
+        const pauseOnClickOutside = (event) => {
+            if (!video.contains(event.target)) {
+                video.pause();
+                document.removeEventListener('click', pauseOnClickOutside); // Remove the listener when paused
+            }
+        };
+
+        // Add click listener on play, remove on pause
+        video.addEventListener('play', () => {
+            document.addEventListener('click', pauseOnClickOutside);
+        });
+        video.addEventListener('pause', () => {
+            document.removeEventListener('click', pauseOnClickOutside);
+        });
     });
+
+    /* Pause the video when switching tabs
+    document.querySelectorAll('a[data-bs-toggle="pill"]').forEach((tab) => {
+        tab.addEventListener('shown.bs.tab', () => {
+            videos.forEach((video) => video.pause());
+        });
+    });*/
 });
 document.addEventListener('DOMContentLoaded', () => {
-    // Get all video elements
-    const videos = document.querySelectorAll('.js-player');
+    const homeTab = document.querySelector('a[href="#home"]');
+    const homeContent = document.getElementById('home');
 
-    videos.forEach((video) => {
-        // Add a play event listener to each video
-        video.addEventListener('play', () => {
-            // Add a click event listener to the document
-            document.addEventListener('click', (event) => {
-                // Check if the click happened outside the currently playing video
-                if (!video.contains(event.target)) {
-                    video.pause();
-                }
-            }, { once: true }); // Ensure this event is only triggered once per play
-        });
+    homeTab.addEventListener('click', (event) => {
+        if (homeContent.classList.contains('active')) {
+            homeContent.classList.remove('fade-in'); // Remove existing animation class
+            void homeContent.offsetWidth; // Trigger reflow to restart the animation
+            homeContent.classList.add('fade-in'); // Reapply animation class
+        }
     });
 });
