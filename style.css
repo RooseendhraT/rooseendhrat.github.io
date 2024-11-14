@@ -12,16 +12,19 @@
   background-color: rgb(255, 255, 255);
   margin: 10px 10px;
 }
-.nav-pills .nav-link.active {
-  background-color: transparent !important;
-}
-
-.nav-pills .nav-link:hover {
-  color: rgb(190, 190, 190);
-}
-
 .nav-pills .nav-link {
   color: antiquewhite;
+}
+.nav-pills .nav-link:hover{
+  color: rgb(167, 167, 167);
+  
+}
+.nav-pills .nav-link.active {
+  background-color: transparent !important;
+  color: antiquewhite;
+  text-shadow: 0 0 5px;
+  text-shadow: 0 0 10px;
+  text-shadow: 0 0 20px;
 }
 
 .navbar .nav-pills {
