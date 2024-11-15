@@ -1,5 +1,6 @@
 .tab-content{
   font-size: small;
+  padding-top: 70px;
 }
 .nav-center{
   display: flex;
@@ -21,11 +22,12 @@
 }
 .nav-pills .nav-link.active {
   background-color: transparent !important;
-  color: antiquewhite;
+  color: white;
   text-shadow: 0 0 5px;
-  text-shadow: 0 0 10px;
-  text-shadow: 0 0 20px;
-  text-shadow: 0 0 40px;
+  text-shadow: 0 0 15px;
+  text-shadow: 0 0 60px;
+  text-shadow: 0 0 180px;
+  font-weight: bold;
 }
 
 .navbar .nav-pills {
