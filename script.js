@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.removeEventListener('click', pauseOnClickOutside);
         });
     });
-
+    
     // Pause the video when click tab
     document.querySelectorAll('a[data-bs-toggle="pill"]').forEach((tab) => {
         tab.addEventListener('shown.bs.tab', () => {
