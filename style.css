@@ -1,5 +1,9 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+
 .tab-content{
-  font-size: small;
+  font-size: 16px;
   padding-top: 70px;
 }
 .nav-center{
@@ -14,7 +18,7 @@
   margin: 10px 10px;
 }
 .nav-pills .nav-link {
-  color: antiquewhite;
+  color: white;
 }
 .nav-pills .nav-link:hover{
   color: rgb(167, 167, 167);
@@ -22,12 +26,10 @@
 }
 .nav-pills .nav-link.active {
   background-color: transparent !important;
-  color: white;
   text-shadow: 0 0 5px;
   text-shadow: 0 0 15px;
   text-shadow: 0 0 60px;
   text-shadow: 0 0 180px;
-  font-weight: bold;
 }
 
 .navbar .nav-pills {
