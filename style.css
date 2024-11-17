@@ -34,10 +34,7 @@ body {
   margin-left: 15px;
 }
 .custom-modal {
-  margin-top: 150px; /* Adjust this value based on your navbar height */
-  border: none; /* Remove borders */
-  background-color: transparent; /* Make background transparent */
-  box-shadow: none; /* Remove box shadow */
+  margin-top: 150px;
 }
 #zoomedProfilePic {
   border-radius: 50%;
