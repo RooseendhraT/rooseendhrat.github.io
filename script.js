@@ -1,3 +1,11 @@
+// profile pic zoom
+document.querySelector('a.navbar-brand img').addEventListener('click', function() {
+  var myModal = new bootstrap.Modal(document.getElementById('profilePicModal'), {
+    keyboard: true
+  });
+  myModal.show();
+});
+
 document.addEventListener('DOMContentLoaded', () => {
     // Select all video players with the class .js-player
     const videoPlayers = document.querySelectorAll('.js-player');
@@ -16,34 +24,33 @@ document.addEventListener('DOMContentLoaded', () => {
             ],
             settings: ['quality'],
             quality: {
-                default: 1080, // Default quality
-                options: [1080, 720, 480], // Available options
-                forced: true, // Forces the available options to just 1080p or 720p or 480p
+                default: 1080,
+                options: [1080, 720, 480],
+                forced: true,
                 onChange: (newQuality) => {
                     console.log(`Quality changed to ${newQuality}`);
-                    updateVideoSource(newQuality, player); // Update the source for this specific player
+                    updateVideoSource(newQuality, player);
                 }
             }
         });
     });
 
-    // Function to update the video source based on selected quality
+    // Set quality
     function updateVideoSource(quality, videoElement) {
         const sources = videoElement.querySelectorAll('source');
         let newSource;
 
-        // Find the source element that matches the selected quality
         sources.forEach(source => {
             if (source.getAttribute('data-quality') == quality) {
                 newSource = source;
             }
         });
-        // Update the video source if a matching one was found
+       
         if (newSource) {
             // Set the new video source
             videoElement.src = newSource.src;
             videoElement.load();
-            videoElement.play(); // Play the video immediately after source change
+            videoElement.play();
         }
     }
 });
@@ -77,7 +84,7 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         });
 
-        // Pause video if clicked outside of it
+        // Pause video if clicked outside
         const pauseOnClickOutside = (event) => {
             if (!video.contains(event.target)) {
                 video.pause();
