@@ -41,6 +41,10 @@ body {
   transform: scale(1);
   transition: transform 0.3s ease;
 }
+.caption {
+  font-size: 1rem;
+  font-weight: bold;
+}
 .modal-content {
   background-color: transparent;
   border: none;
