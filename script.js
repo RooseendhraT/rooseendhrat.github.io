@@ -1,16 +1,56 @@
-// profile pic zoom
-document.querySelector('a.navbar-brand img').addEventListener('click', function() {
-  var myModal = new bootstrap.Modal(document.getElementById('profilePicModal'), {
-    keyboard: true
-  });
-  myModal.show();
+document.addEventListener('DOMContentLoaded', () => {
+    // Fetch the JSON file and dynamically generate video elements
+    fetch('data/videos.json')
+        .then(response => response.json())
+        .then(videos => {
+            const container = document.querySelector('#videos .row'); // Selector for videos tab
+
+            videos.forEach(video => {
+                const card = document.createElement('div');
+                card.className = 'col-sm-4 pt-3';
+
+                card.innerHTML = `
+                    <div class="card">
+                        <div class="video-container">
+                            <div class="loading-overlay" style="display:none;"><div class="spinner"></div></div>
+                            <video class="js-player" preload="none" poster="${video.poster}" controls>
+                                <source src="${video.sources[1080]}" type="video/mp4" data-quality="1080">
+                                <source src="${video.sources[720]}" type="video/mp4" data-quality="720">
+                                <source src="${video.sources[480]}" type="video/mp4" data-quality="480">
+                                Your browser does not support the video tag.
+                            </video>
+                            <div class="d-flex justify-content-between align-items-center p-2">
+                                <div class="caption">
+                                    <p>${video.title}</p>
+                                </div>
+                                <div class="dropdown">
+                                    <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" id="downloadDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                        <i class="fas fa-download"></i>
+                                    </button>
+                                    <ul class="dropdown-menu" aria-labelledby="downloadDropdown">
+                                        <li><a class="dropdown-item" href="${video.sources[1080]}" download>1080p</a></li>
+                                        <li><a class="dropdown-item" href="${video.sources[720]}" download>720p</a></li>
+                                        <li><a class="dropdown-item" href="${video.sources[480]}" download>480p</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+
+                container.appendChild(card);
+            });
+
+            // Reinitialize video players after dynamic content is loaded
+            initializeVideoPlayers();
+        })
+        .catch(err => console.error('Error loading videos:', err));
 });
 
-document.addEventListener('DOMContentLoaded', () => {
-    // Select all video players with the class .js-player
+// Initialize video players with Plyr.js
+function initializeVideoPlayers() {
     const videoPlayers = document.querySelectorAll('.js-player');
 
-    // Initialize each video player separately
     videoPlayers.forEach(player => {
         new Plyr(player, {
             controls: [
@@ -28,96 +68,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 options: [1080, 720, 480],
                 forced: true,
                 onChange: (newQuality) => {
-                    console.log(`Quality changed to ${newQuality}`);
                     updateVideoSource(newQuality, player);
                 }
             }
         });
-    });
 
-    // Set quality
-    function updateVideoSource(quality, videoElement) {
-        const sources = videoElement.querySelectorAll('source');
-        let newSource;
-
-        sources.forEach(source => {
-            if (source.getAttribute('data-quality') == quality) {
-                newSource = source;
-            }
-        });
-       
-        if (newSource) {
-            // Set the new video source
-            videoElement.src = newSource.src;
-            videoElement.load();
-            videoElement.play();
-        }
-    }
-});
-
-document.addEventListener('DOMContentLoaded', () => {
-    const videos = document.querySelectorAll('.js-player');
-    videos.forEach((video) => {
-        const overlay = video.closest('.video-container').querySelector('.loading-overlay');
-
-        // Show overlay on buffering
-        video.addEventListener('waiting', () => {
-            overlay.style.display = 'flex';
-        });
-
-        // Hide overlay on play
-        video.addEventListener('playing', () => {
-            overlay.style.display = 'none';
-        });
-
-        // Hide overlay on pause
-        video.addEventListener('pause', () => {
-            overlay.style.display = 'none';
+        // Ensure videos do not autoplay
+        player.addEventListener('loadedmetadata', () => {
+            player.pause();
         });
 
         // Only allow one video to play at a time
-        video.addEventListener('play', () => {
-            videos.forEach((otherVideo) => {
-                if (otherVideo !== video) {
-                    otherVideo.pause();
+        player.addEventListener('play', () => {
+            videoPlayers.forEach(otherPlayer => {
+                if (otherPlayer !== player) {
+                    otherPlayer.pause();
                 }
             });
         });
-
-        // Pause video if clicked outside
-        const pauseOnClickOutside = (event) => {
-            if (!video.contains(event.target)) {
-                video.pause();
-                document.removeEventListener('click', pauseOnClickOutside); // Remove the listener when paused
-            }
-        };
-
-        // Add click listener on play, remove on pause
-        video.addEventListener('play', () => {
-            document.addEventListener('click', pauseOnClickOutside);
-        });
-        video.addEventListener('pause', () => {
-            document.removeEventListener('click', pauseOnClickOutside);
-        });
     });
-    
-    // Pause the video when click tab
-    document.querySelectorAll('a[data-bs-toggle="pill"]').forEach((tab) => {
+
+    // Pause videos when switching tabs
+    document.querySelectorAll('a[data-bs-toggle="pill"]').forEach(tab => {
         tab.addEventListener('shown.bs.tab', () => {
-            videos.forEach((video) => video.pause());
+            videoPlayers.forEach(player => player.pause());
         });
     });
-});
+}
 
-document.addEventListener('DOMContentLoaded', () => {
-    const homeTab = document.querySelector('a[href="#home"]');
-    const homeContent = document.getElementById('home');
+// Update video source when quality changes
+function updateVideoSource(quality, videoElement) {
+    const sources = videoElement.querySelectorAll('source');
+    let newSource;
 
-    homeTab.addEventListener('click', () => {
-        if (homeContent.classList.contains('active')) {
-            homeContent.classList.remove('fade-in');
-            void homeContent.offsetWidth; // animation
-            homeContent.classList.add('fade-in');
+    sources.forEach(source => {
+        if (source.getAttribute('data-quality') == quality) {
+            newSource = source;
         }
     });
+
+    if (newSource) {
+        videoElement.src = newSource.src;
+        videoElement.load();
+        videoElement.play();
+    }
+}
+
+// Profile picture zoom
+document.querySelector('a.navbar-brand img').addEventListener('click', function() {
+    const myModal = new bootstrap.Modal(document.getElementById('profilePicModal'), {
+        keyboard: true
+    });
+    myModal.show();
 });

@@ -34,6 +34,13 @@ body {
   margin-left: 15px;
   align-items: center;
 }
+.dropdown-menu{
+  min-width: 100px;
+}
+.dropdown-menu {
+  width: 100%;
+  text-align: center;
+}
 .custom-modal {
   margin-top: 150px;
 }
