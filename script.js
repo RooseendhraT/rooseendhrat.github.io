@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
                 card.innerHTML = `
                     <div class="card">
-                        <div class="video-container">
+                        <div class="video-container position-relative">
                             <div class="loading-overlay" style="display:none;"><div class="spinner"></div></div>
                             <video class="js-player" preload="none" poster="${video.poster}" controls>
                                 <source src="${video.sources[1080]}" type="video/mp4" data-quality="1080">
@@ -23,15 +23,20 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="caption">
                                     <p>${video.title}</p>
                                 </div>
-                                <div class="dropdown">
-                                    <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" id="downloadDropdown" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <i class="fas fa-download"></i>
+                                <div class="d-flex">
+                                    <button class="btn btn-outline-dark btn-sm me-2" type="button">
+                                        <i class="fa fa-heart"></i><span id="likeCount"> 0</span>
                                     </button>
-                                    <ul class="dropdown-menu" aria-labelledby="downloadDropdown">
-                                        <li><a class="dropdown-item" href="${video.sources[1080]}" download>1080p</a></li>
-                                        <li><a class="dropdown-item" href="${video.sources[720]}" download>720p</a></li>
-                                        <li><a class="dropdown-item" href="${video.sources[480]}" download>480p</a></li>
-                                    </ul>
+                                    <div class="dropdown">
+                                        <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" id="downloadDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                            <i class="fas fa-download"></i>
+                                        </button>
+                                        <ul class="dropdown-menu" aria-labelledby="downloadDropdown">
+                                            <li><a class="dropdown-item" href="${video.sources[1080]}" download>1080p</a></li>
+                                            <li><a class="dropdown-item" href="${video.sources[720]}" download>720p</a></li>
+                                            <li><a class="dropdown-item" href="${video.sources[480]}" download>480p</a></li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -52,6 +57,8 @@ function initializeVideoPlayers() {
     const videoPlayers = document.querySelectorAll('.js-player');
 
     videoPlayers.forEach(player => {
+        const overlay = player.closest('.video-container').querySelector('.loading-overlay');
+
         new Plyr(player, {
             controls: [
                 'play-large',
@@ -71,6 +78,16 @@ function initializeVideoPlayers() {
                     updateVideoSource(newQuality, player);
                 }
             }
+        });
+
+        // Show overlay when video is buffering
+        player.addEventListener('waiting', () => {
+            overlay.style.display = 'flex';
+        });
+
+        // Hide overlay when video is ready
+        player.addEventListener('canplay', () => {
+            overlay.style.display = 'none';
         });
 
         // Ensure videos do not autoplay
