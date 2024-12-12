@@ -23,10 +23,6 @@ document.addEventListener('DOMContentLoaded', () => {
                                 <div class="caption">
                                     <p>${video.title}</p>
                                 </div>
-                                <div class="d-flex">
-                                    <button class="btn btn-outline-dark btn-sm me-2" type="button">
-                                        <i class="fa fa-heart"></i><span id="likeCount"> 0</span>
-                                    </button>
                                     <div class="dropdown">
                                         <button class="btn btn-outline-dark btn-sm dropdown-toggle" type="button" id="downloadDropdown" data-bs-toggle="dropdown" aria-expanded="false">
                                             <i class="fas fa-download"></i>
