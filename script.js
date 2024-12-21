@@ -79,11 +79,13 @@ function initializeVideoPlayers() {
         // Show overlay when video is buffering
         player.addEventListener('waiting', () => {
             overlay.style.display = 'flex';
+            if (playbButton) playbButton.style.display ='';
         });
 
         // Hide overlay when video is ready
         player.addEventListener('canplay', () => {
             overlay.style.display = 'none';
+            if (playbButton) playbButton.style.display ='';
         });
 
         // Ensure videos do not autoplay
