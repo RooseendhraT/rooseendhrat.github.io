@@ -7,9 +7,9 @@ body {
 }
 .vertical-separator{
   margin-left: -5px;
-  margin-top: 2.6px;
+  align-self: center;
   width: 1px;
-  height: 35px;
+  height: 25px;
   background-color: rgb(255, 255, 255);
 }
 .nav-pills .nav-link {
@@ -99,12 +99,20 @@ body {
   color: inherit !important;
   text-decoration: none !important;
 }
+.instagram-btn:hover {
+  background-color: transparent !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.email-btn:hover {
+  background-color: transparent !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+
 .download-btn {
   width: 47px;
   height: 32px;
-}
-.caption{
-  margin-top: 10px;
 }
 @keyframes spin {
   0% { transform: rotate(0deg); }
