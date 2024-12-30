@@ -6,7 +6,6 @@ body {
   padding-top: 70px;
 }
 .vertical-separator{
-  margin-left: -5px;
   align-self: center;
   width: 1px;
   height: 25px;
@@ -119,22 +118,16 @@ body {
   100% { transform: rotate(360deg); }
 }
 @media screen and (max-width:480px) {
+  html {
+    font-size: 13px;
+  }
+}
+@media screen and (max-width:327px) {
+  html {
+    font-size: 11px;
+  }
+}
 
-  .nav-pills .nav-item {
-      font-size: 14px;
-  }
-}
-@media screen and (max-width:297px) {
-  .nav-pills .nav-item {
-      font-size: 13px;
-  }
-  .nav .nav-item{
-    margin-left: -15px;
-  }
-  .vertical-separator{
-    display: none;
-  } 
-}
 @keyframes fadeIn {
   from {
       opacity: 0;
@@ -147,4 +140,16 @@ body {
 }
 .fade-in {
   animation: fadeIn 0.3s ease-in-out;
+}
+.shake-text {
+  font-size: 13px;
+  margin-left: 5px;
+  display: inline-block;
+  color: white;
+}
+.shake-text {
+
+  --animate-duration: 2.5s; 
+  animation-iteration-count: infinite; /* Infinite loop */
+  animation-delay: 2s; /* Adds a 2-second break between iterations */
 }
