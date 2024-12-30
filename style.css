@@ -124,7 +124,7 @@ body {
       font-size: 14px;
   }
 }
-@media screen and (max-width:280px) {
+@media screen and (max-width:297px) {
   .nav-pills .nav-item {
       font-size: 13px;
   }
