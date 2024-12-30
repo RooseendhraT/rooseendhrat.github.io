@@ -5,16 +5,12 @@ body {
   font-size: 16px;
   padding-top: 70px;
 }
-.nav-center{
-  display: flex;
-  justify-content: space-around;
-}
 .vertical-separator{
-  display: inline-block;
+  margin-left: -5px;
+  margin-top: 2.6px;
   width: 1px;
   height: 35px;
   background-color: rgb(255, 255, 255);
-  margin: 10px 10px;
 }
 .nav-pills .nav-link {
   color: white;
@@ -30,11 +26,6 @@ body {
   text-shadow: 0 0 60px;
   text-shadow: 0 0 180px;
 }
-.navbar .nav-pills {
-  margin-left: 15px;
-  align-items: center;
-}
-
 .dropdown-menu{
   min-width: 100px;
 }
@@ -103,6 +94,18 @@ body {
   border-radius: 50%;
   animation: spin 1s linear infinite;
 }
+.download-btn:hover {
+  background-color: transparent !important;
+  color: inherit !important;
+  text-decoration: none !important;
+}
+.download-btn {
+  width: 47px;
+  height: 32px;
+}
+.caption{
+  margin-top: 10px;
+}
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
@@ -112,6 +115,17 @@ body {
   .nav-pills .nav-item {
       font-size: 14px;
   }
+}
+@media screen and (max-width:280px) {
+  .nav-pills .nav-item {
+      font-size: 13px;
+  }
+  .nav .nav-item{
+    margin-left: -15px;
+  }
+  .vertical-separator{
+    display: none;
+  } 
 }
 @keyframes fadeIn {
   from {

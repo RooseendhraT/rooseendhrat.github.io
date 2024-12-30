@@ -1,47 +1,44 @@
 [
-   {
-    "title": "Billy butcher🔪",
-    "poster":"images/",
+    {
+    "title": ">Retro📈",
+    "poster":"",
     "sources": {
-        "1080":"videos/butcher_1080.mp4",
-        "720":"videos/butcher_720.mp4",
-        "480":"videos/butcher_540" 
+        "1080":"videos/retro_1080.mp4" 
+    }
+    },
+    {
+    "title": "Billy butcher🔪",
+    "poster":"",
+    "sources": {
+        "1080":"videos/butcher_1080.mp4"
     }
    },
   {
       "title": "Redefining thuppaki!",
       "poster": "images/thuppakkitext.png",
       "sources": {
-          "1080": "videos/thuppakki_1080.mp4",
-          "720": "videos/thuppakki_720.mp4",
-          "480": "videos/thuppakki_540.mp4"
+          "1080": "videos/thuppakki_1080.mp4"
       }
   },
   {
       "title": "Indhu || mukund",
       "poster": "images/amarantext.png",
       "sources": {
-          "1080": "videos/Amaran_1080.mp4",
-          "720": "videos/Amaran_720.mp4",
-          "480": "videos/amaran_540.mp4"
+          "1080": "videos/Amaran_1080.mp4"
       }
   },
   {
       "title":"Flawless!",
       "poster":"images/flawlesstext.png",
       "sources": {
-        "1080":"videos/Flawless_1080.mp4",
-        "720":"videos/Flawless_720.mp4",
-        "480":"videos/Flawless_540.mp4"
+        "1080":"videos/Flawless_1080.mp4"
     }
   },
   {
     "title": "jd core!",
     "poster": "images/jdtext.png",
     "sources": {
-        "1080": "videos/jd_1080.mp4",
-        "720": "videos/jd_720.mp4",
-        "480": "videos/jd_540.mp4"
+        "1080": "videos/jd_1080.mp4"
     }
 }
 
