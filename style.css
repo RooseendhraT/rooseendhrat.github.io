@@ -5,12 +5,6 @@ body {
   font-size: 16px;
   padding-top: 70px;
 }
-.vertical-separator{
-  align-self: center;
-  width: 1px;
-  height: 25px;
-  background-color: rgb(255, 255, 255);
-}
 .nav-pills .nav-link {
   color: white;
 }
@@ -108,26 +102,121 @@ body {
   color: inherit !important;
   text-decoration: none !important;
 }
-
-.download-btn {
-  width: 47px;
-  height: 32px;
+.nav-link {
+  position: relative; /* To position the underline */
+  text-decoration: none; /* Remove default underline */
+  color: white; /* Adjust as needed */
 }
+
+.nav-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 50%; /* Start from the center */
+  width: 0;
+  height: 2px;
+  background-color: white; /* Color of the underline */
+  transition: all 0.3s ease-out; /* Smooth animation */
+  transform: translateX(-50%);
+}
+
+.nav-link.active::after {
+  width: 70%; /* Expand the underline outward */
+  left: 50%; /* Keep centered */
+}
+
+.navbar-brand .rounded-pill{
+  width: 50px;
+}
+
 @keyframes spin {
   0% { transform: rotate(0deg); }
   100% { transform: rotate(360deg); }
 }
-@media screen and (max-width:480px) {
-  html {
+@media screen and (max-width:428px) {
+  html{
+    font-size: 15px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 49px;
+  }
+}
+@media screen and (max-width:404px) {
+  html{
+    font-size: 14px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 48px;
+  }
+}
+@media screen and (max-width:381px) {
+  html{
     font-size: 13px;
   }
-}
-@media screen and (max-width:327px) {
-  html {
-    font-size: 11px;
+  body p{
+    font-size: 12px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 47px;
   }
 }
-
+@media screen and (max-width:357px) {
+  html{
+    font-size: 12px;
+  }
+  body p{
+    font-size: 11px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 46px;
+  }
+}
+@media screen and (max-width:333px) {
+  html{
+    font-size: 11px;
+  }
+  body p{
+    font-size: 10px;
+  }
+  .nav-link::after {
+    height: 1.5px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 45px;
+  }
+}
+@media screen and (max-width:310px) {
+  html{
+    font-size: 10px;
+  }
+  .nav-link::after {
+    height: 1.3px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 41px;
+  }
+}
+@media screen and (max-width:280px) {
+  html{
+    font-size: 9px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 38px;
+  }
+}
+@media screen and (max-width:250px) {
+  html{
+    font-size: 8px;
+  }
+  body p{
+    font-size: 9px;
+  }.nav-link::after {
+    height: 1px;
+  }
+  .navbar-brand .rounded-pill{
+    width: 35px;
+  }
+}
 @keyframes fadeIn {
   from {
       opacity: 0;
@@ -138,18 +227,50 @@ body {
       transform: scale(1);
   }
 }
+@keyframes custom-tada {
+  0% {
+    transform: scale(1);
+  }
+  10%, 20% {
+    transform: scale(0.9) rotate(-2deg); /* Reduced rotate */
+  }
+  30%, 50%, 70% {
+    transform: scale(1.1) rotate(2deg); /* Reduced rotate */
+  }
+  40%, 60% {
+    transform: scale(1.1) rotate(-2deg); /* Reduced rotate */
+  }
+  80% {
+    transform: scale(1) rotate(1deg); /* Reduced rotate */
+  }
+  100% {
+    transform: scale(1) rotate(0);
+  }
+}
 .fade-in {
   animation: fadeIn 0.3s ease-in-out;
 }
 .shake-text {
-  font-size: 13px;
-  margin-left: 5px;
-  display: inline-block;
+  animation: tada-with-pause 5s ease-in-out infinite;
   color: white;
 }
-.shake-text {
-
-  --animate-duration: 2.5s; 
-  animation-iteration-count: infinite; /* Infinite loop */
-  animation-delay: 2s; /* Adds a 2-second break between iterations */
+@keyframes tada-with-pause {
+  0% {
+    transform: scale(1);
+  }
+  10%, 20% {
+    transform: scale(0.9) rotate(-2deg);
+  }
+  30%, 50%, 70% {
+    transform: scale(1.1) rotate(2deg);
+  }
+  40%, 60% {
+    transform: scale(1.1) rotate(-2deg);
+  }
+  80% {
+    transform: scale(1) rotate(1deg);
+  }
+  33.333%, 100% {
+    transform: scale(1) rotate(0);
+  }
 }
